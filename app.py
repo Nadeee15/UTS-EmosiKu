@@ -7,7 +7,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 import time
 
-st.set_page_config(page_title="Kalma.ai — Sistem Deteksi Psikologis", layout="wide")
+st.set_page_config(page_title="EmosiKu — Sistem Deteksi Psikologis", layout="wide")
 
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -58,7 +58,7 @@ st.markdown('''
                   fill="white" opacity="0.9"/>
         </svg>
     </div>
-    <div class="brand-name">Kalma<span>.</span>ai</div>
+    <div class="brand-name">EmosiKu<span>.</span></div>
     <div class="status-pill">
         <span class="status-dot"></span>IndoBERT Aktif
     </div>
@@ -68,7 +68,7 @@ st.markdown('''
 # ── TITLE ──────────────────────────────────────────────────────────────
 st.markdown('''
 <div class="title-container">
-    <div class="title-eyebrow">analisis leksikal · kesehatan mental</div>
+    <div class="title-eyebrow">sistem analisis klinis · kesehatan mental</div>
     <div class="title-main">Memahami <em>perasaan</em><br>melalui kata-kata.</div>
     <div class="title-sub">Deteksi Psikologis Berbasis Natural Language Processing — Bahasa Indonesia</div>
 </div>
