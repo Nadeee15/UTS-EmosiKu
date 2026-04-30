@@ -1,349 +1,130 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700;800&display=swap');
+    
+* {font-family: 'Nunito', sans-serif;}
 
-* { font-family: 'Inter', sans-serif; }
-
-/* ── HIDE STREAMLIT HEADER ── */
+/* 1. MENGHILANGKAN SPACE PUTIH DI ATAS */
 header[data-testid="stHeader"] { visibility: hidden; height: 0px; }
-.block-container {
-    padding-top: 2.5rem !important;
-    padding-bottom: 1rem !important;
-    max-width: 92% !important;
-}
+.block-container { padding-top: 2rem !important; padding-bottom: 0 !important; max-width: 90% !important; }
 
-/* ── DARK BACKGROUND + GRID TEXTURE ── */
+/* 2. BACKGROUND ANIMASI (TEMA PSIKOLOGI - CALMING PASTEL) */
 .stApp {
-    background-color: #08090d;
-    background-image:
-        linear-gradient(rgba(79, 125, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79, 125, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    color: #e8eaf0;
+    background: linear-gradient(-45deg, #e0f2fe, #f3e8ff, #ccfbf1, #e0e7ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #1e293b;
+}
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
-/* ── FLOATING ORBS (lebih subtil, bukan pastel terang) ── */
+/* 3. ELEMEN BERGERAK (FLOATING ORBS) */
 .orb-1, .orb-2, .orb-3 {
     position: fixed;
     border-radius: 50%;
-    filter: blur(120px);
-    z-index: 0;
-    animation: floatOrb 16s infinite ease-in-out alternate;
-    pointer-events: none;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 12s infinite ease-in-out alternate;
 }
-.orb-1 { width: 500px; height: 500px; background: #1a2a6c; top: -150px; left: -150px; opacity: 0.6; }
-.orb-2 { width: 600px; height: 600px; background: #0d3d3a; bottom: -200px; right: -150px; animation-delay: -6s; opacity: 0.5; }
-.orb-3 { width: 400px; height: 400px; background: #1a1a4e; top: 35%; left: 38%; animation-delay: -3s; opacity: 0.4; }
+.orb-1 { width: 400px; height: 400px; background: #a78bfa; top: -100px; left: -100px; opacity: 0.5;}
+.orb-2 { width: 500px; height: 500px; background: #5eead4; bottom: -150px; right: -100px; animation-delay: -5s; opacity: 0.5;}
+.orb-3 { width: 350px; height: 350px; background: #93c5fd; top: 40%; left: 40%; animation-delay: -2s; opacity: 0.4;}
 
-@keyframes floatOrb {
-    0%   { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, 50px) scale(1.08); }
-}
-
-/* ── SCANNER LINE ── */
-.scanner-line {
-    position: fixed;
-    left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(79,125,255,0.35), transparent);
-    animation: scanDown 7s linear infinite;
-    z-index: 1;
-    pointer-events: none;
-}
-@keyframes scanDown {
-    0%   { top: 0; opacity: 0; }
-    5%   { opacity: 1; }
-    95%  { opacity: 1; }
-    100% { top: 100vh; opacity: 0; }
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    100% { transform: translate(40px, 60px) scale(1.1) rotate(20deg); }
 }
 
-/* ── TITLE BLOCK ── */
+/* Animasi Judul Utama */
 .title-container {
     text-align: center;
-    padding: 8px 0 36px 0;
-    animation: fadeInDown 1s ease-out;
-    position: relative;
-    z-index: 2;
-}
-.title-sys-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: #4f7dff;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-.title-sys-tag::before {
-    content: '';
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: #4f7dff;
-    border-radius: 50%;
-    animation: blinkDot 1.5s ease-in-out infinite;
-}
-@keyframes blinkDot {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.2; }
+    padding: 10px 0 30px 0;
+    animation: fadeInDown 1.5s ease-out;
 }
 .title-main {
-    font-family: 'Syne', sans-serif;
-    font-size: 3.6rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    color: #e8eaf0;
-    letter-spacing: -2px;
-    line-height: 1.05;
-    margin-bottom: 6px;
-}
-.title-main span { color: #4f7dff; }
-.title-sub {
-    color: #6b7280;
-    font-size: 0.95rem;
-    font-weight: 300;
-    letter-spacing: 0.3px;
+    color: #1e293b;
+    margin-bottom: 5px;
+    letter-spacing: -1px;
 }
 
-/* ── GLASS CARD (metric-card) ── */
+/* Kartu UI (Glassmorphism Light) */
 .metric-card {
-    background: rgba(15, 17, 23, 0.85);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 18px;
-    padding: 28px 30px;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
-    transition: border-color 0.3s ease, transform 0.3s ease;
-    animation: slideUp 0.8s ease-out;
-    color: #e8eaf0;
-    position: relative;
-    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: slideUp 1s ease-out;
+    color: #334155;
 }
 .metric-card:hover {
-    border-color: rgba(79, 125, 255, 0.2);
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* ── CARD SECTION HEADER ── */
-.card-header {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: #6b7280;
-    padding-bottom: 14px;
-    margin-bottom: 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.card-header-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #4f7dff;
-    animation: blinkDot 1.5s ease-in-out infinite;
-}
-
-/* ── TEXT AREA ── */
+/* 4. FIX TEXT INVISIBLE (Input Area Terang) */
 .stTextArea textarea {
-    background-color: #0f1117 !important;
-    color: #d1d5db !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    border-radius: 12px !important;
-    font-size: 1rem !important;
-    font-weight: 300 !important;
-    line-height: 1.7 !important;
-    padding: 16px !important;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    font-family: 'Inter', sans-serif !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #cbd5e1 !important;
+    border-radius: 15px !important;
+    font-size: 1.15rem !important;
+    padding: 20px !important;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
 }
 .stTextArea textarea:focus {
-    border-color: rgba(79, 125, 255, 0.5) !important;
-    box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1) !important;
-    background-color: #111318 !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2) !important;
+    background-color: #f8fafc !important;
 }
-.stTextArea textarea::placeholder { color: #4b5563 !important; }
 
-/* ── PROCESS BUTTON ── */
+/* Tombol Proses (Gradient Cerah) */
 div.stButton > button:first-child {
-    background: #4f7dff !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-radius: 10px !important;
-    padding: 13px 24px !important;
-    font-family: 'Syne', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 0.85rem !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
-    width: 100% !important;
-    transition: all 0.2s ease !important;
-    box-shadow: 0 4px 24px rgba(79, 125, 255, 0.3) !important;
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
+    color: white !important;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
 }
 div.stButton > button:first-child:hover {
-    background: #6b92ff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 32px rgba(79, 125, 255, 0.4) !important;
-}
-div.stButton > button:first-child:active {
-    transform: translateY(0) !important;
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 12px 25px rgba(129, 140, 248, 0.4);
 }
 
-/* ── RESULT: ALERT BOX ── */
+/* Kartu Peringatan & Aman dengan Animasi Lembut */
 .alert-box {
-    background: rgba(255, 69, 96, 0.07);
-    border: 1px solid rgba(255, 69, 96, 0.25);
-    border-radius: 14px;
-    padding: 20px 22px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    animation: fadeIn 0.5s ease;
+    border-left: 6px solid #f43f5e; 
+    background: #ffe4e6;
+    padding: 25px; border-radius: 15px; 
+    animation: pulseSoft 2s infinite alternate;
 }
-.alert-box-icon {
-    font-size: 22px;
-    background: rgba(255, 69, 96, 0.12);
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-}
-.alert-box h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #ff4560;
-    margin: 0 0 4px 0;
-    letter-spacing: -0.5px;
-}
-.alert-box p {
-    color: #9ca3af;
-    font-size: 0.88rem;
-    margin: 0;
-    font-weight: 300;
-    line-height: 1.5;
-}
-
-/* ── RESULT: SAFE BOX ── */
 .safe-box {
-    background: rgba(0, 212, 170, 0.06);
-    border: 1px solid rgba(0, 212, 170, 0.22);
-    border-radius: 14px;
-    padding: 20px 22px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    animation: fadeIn 0.5s ease;
-}
-.safe-box-icon {
-    font-size: 22px;
-    background: rgba(0, 212, 170, 0.1);
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-}
-.safe-box h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #00d4aa;
-    margin: 0 0 4px 0;
-    letter-spacing: -0.5px;
-}
-.safe-box p {
-    color: #9ca3af;
-    font-size: 0.88rem;
-    margin: 0;
-    font-weight: 300;
-    line-height: 1.5;
+    border-left: 6px solid #10b981; 
+    background: #d1fae5;
+    padding: 25px; border-radius: 15px; 
+    transition: all 0.3s;
 }
 
-/* ── CONFIDENCE SCORE BOX ── */
-.conf-box {
-    background: #0f1117;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin: 14px 0;
+@keyframes pulseSoft {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(244, 63, 94, 0); }
+    100% { transform: scale(1.01); box-shadow: 0 10px 20px rgba(244, 63, 94, 0.15); }
 }
-.conf-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.6rem;
-    font-weight: 800;
-    color: #4f7dff;
-    letter-spacing: -1px;
-    line-height: 1;
-}
-.conf-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: #6b7280;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 4px;
-}
+@keyframes slideUp { from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);} }
+@keyframes fadeInDown { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
 
-/* ── PROGRESS BARS ── */
-.stProgress > div > div > div > div {
-    background: linear-gradient(90deg, #4f7dff, #00d4aa) !important;
-    border-radius: 4px !important;
-}
-.stProgress > div > div {
-    background: rgba(255,255,255,0.05) !important;
-    border-radius: 4px !important;
-}
-
-/* ── DATAFRAME / LOG TABLE ── */
-.stDataFrame {
-    background: #0f1117 !important;
-    border: 1px solid rgba(255,255,255,0.07) !important;
-    border-radius: 14px !important;
-    overflow: hidden !important;
-}
-.stDataFrame [data-testid="stDataFrameResizable"] {
-    border-radius: 14px !important;
-}
-.stDataFrame th {
-    background: #161a24 !important;
-    color: #6b7280 !important;
-    font-family: 'DM Mono', monospace !important;
-    font-size: 10px !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
-    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-    padding: 12px 16px !important;
-}
-.stDataFrame td {
-    color: #9ca3af !important;
-    font-size: 13px !important;
-    font-weight: 300 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.04) !important;
-    padding: 11px 16px !important;
-}
-
-/* ── SPINNER / STATUS TEXT ── */
-.stSpinner > div {
-    border-top-color: #4f7dff !important;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #08090d; }
-::-webkit-scrollbar-thumb { background: #1e2433; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #2d3348; }
+/* Progress Bar */
+.stProgress .st-bo { background-color: #e2e8f0; }
