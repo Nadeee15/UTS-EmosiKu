@@ -1,130 +1,330 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700;800&display=swap');
-    
-* {font-family: 'Nunito', sans-serif;}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap');
 
-/* 1. MENGHILANGKAN SPACE PUTIH DI ATAS */
+:root {
+    --sage: #4a7c59;
+    --sage-light: #6b9e7a;
+    --sage-pale: #c8dfd0;
+    --sage-mist: #eaf3ed;
+    --warm: #f5f0e8;
+    --warm2: #ede6d8;
+    --soil: #7a6652;
+    --ink: #2c3830;
+    --ink2: #3d4f44;
+    --muted: #8a9e90;
+}
+
+* { font-family: 'DM Sans', sans-serif !important; }
+
 header[data-testid="stHeader"] { visibility: hidden; height: 0px; }
-.block-container { padding-top: 2rem !important; padding-bottom: 0 !important; max-width: 90% !important; }
+.block-container {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 90% !important;
+}
 
-/* 2. BACKGROUND ANIMASI (TEMA PSIKOLOGI - CALMING PASTEL) */
 .stApp {
-    background: linear-gradient(-45deg, #e0f2fe, #f3e8ff, #ccfbf1, #e0e7ff);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: #1e293b;
-}
-@keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+    background-color: var(--warm);
+    color: var(--ink);
 }
 
-/* 3. ELEMEN BERGERAK (FLOATING ORBS) */
-.orb-1, .orb-2, .orb-3 {
+.leaf-deco {
     position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: -1;
-    animation: float 12s infinite ease-in-out alternate;
+    border-radius: 50% 0 50% 0;
+    pointer-events: none;
+    z-index: 0;
 }
-.orb-1 { width: 400px; height: 400px; background: #a78bfa; top: -100px; left: -100px; opacity: 0.5;}
-.orb-2 { width: 500px; height: 500px; background: #5eead4; bottom: -150px; right: -100px; animation-delay: -5s; opacity: 0.5;}
-.orb-3 { width: 350px; height: 350px; background: #93c5fd; top: 40%; left: 40%; animation-delay: -2s; opacity: 0.4;}
+.leaf-1 { width: 420px; height: 420px; background: rgba(74,124,89,0.05); top: -100px; right: -80px; transform: rotate(20deg); }
+.leaf-2 { width: 300px; height: 300px; background: rgba(74,124,89,0.04); bottom: 60px; left: -80px; transform: rotate(-25deg); }
+.leaf-3 { width: 200px; height: 200px; background: rgba(74,124,89,0.03); top: 40%; right: 8%; transform: rotate(10deg); }
 
-@keyframes float {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-    100% { transform: translate(40px, 60px) scale(1.1) rotate(20deg); }
-}
-
-/* Animasi Judul Utama */
 .title-container {
-    text-align: center;
-    padding: 10px 0 30px 0;
-    animation: fadeInDown 1.5s ease-out;
+    padding: 4px 0 32px 0;
+    animation: fadeInUp 0.9s ease-out;
+    position: relative;
+    z-index: 2;
+}
+.title-eyebrow {
+    font-family: 'DM Mono', monospace !important;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.title-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--sage-pale);
 }
 .title-main {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #1e293b;
-    margin-bottom: 5px;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--ink);
     letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+.title-main em { color: var(--sage); font-style: italic; }
+.title-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 300;
+    font-style: italic;
 }
 
-/* Kartu UI (Glassmorphism Light) */
-.metric-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+.brand-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 2;
+}
+.brand-mark {
+    width: 42px; height: 42px;
+    background: var(--sage);
+    border-radius: 50% 50% 50% 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.brand-name {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+}
+.brand-name span { color: var(--sage); }
+.status-pill {
+    margin-left: auto;
+    background: var(--sage-mist);
+    border: 1px solid rgba(74,124,89,0.25);
     border-radius: 20px;
-    padding: 35px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    animation: slideUp 1s ease-out;
-    color: #334155;
+    padding: 7px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--sage);
+    font-weight: 500;
 }
-.metric-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+.status-dot {
+    width: 7px; height: 7px;
+    background: var(--sage);
+    border-radius: 50%;
+    display: inline-block;
+    animation: breatheDot 2.5s ease-in-out infinite;
+}
+@keyframes breatheDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.6; }
 }
 
-/* 4. FIX TEXT INVISIBLE (Input Area Terang) */
+.metric-card {
+    background: #ffffff;
+    border: 1px solid rgba(74,124,89,0.15);
+    border-radius: 20px;
+    padding: 26px 28px;
+    animation: fadeInUp 0.8s ease-out;
+    color: var(--ink);
+    transition: box-shadow 0.35s ease;
+    position: relative;
+    z-index: 2;
+}
+.metric-card:hover { box-shadow: 0 10px 36px rgba(74,124,89,0.1); }
+
+.card-label {
+    font-family: 'DM Mono', monospace !important;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.card-label::before {
+    content: '';
+    width: 18px; height: 1px;
+    background: var(--sage-pale);
+}
+
 .stTextArea textarea {
-    background-color: #ffffff !important;
-    color: #0f172a !important;
-    border: 2px solid #cbd5e1 !important;
-    border-radius: 15px !important;
-    font-size: 1.15rem !important;
-    padding: 20px !important;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
+    background-color: var(--warm) !important;
+    color: var(--ink) !important;
+    border: 1px solid rgba(74,124,89,0.25) !important;
+    border-radius: 14px !important;
+    font-size: 0.95rem !important;
+    font-weight: 300 !important;
+    line-height: 1.8 !important;
+    padding: 16px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    transition: border-color 0.2s ease;
 }
 .stTextArea textarea:focus {
-    border-color: #38bdf8 !important;
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2) !important;
-    background-color: #f8fafc !important;
+    border-color: var(--sage) !important;
+    box-shadow: 0 0 0 3px rgba(74,124,89,0.1) !important;
 }
+.stTextArea textarea::placeholder { color: #b8c9bc !important; }
 
-/* Tombol Proses (Gradient Cerah) */
 div.stButton > button:first-child {
-    background: linear-gradient(135deg, #38bdf8, #818cf8);
-    color: white !important;
-    border: none;
-    border-radius: 12px;
-    padding: 12px 24px;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+    background: var(--sage) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 13px 24px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.5px !important;
+    width: 100% !important;
+    transition: background 0.2s ease, transform 0.2s ease !important;
 }
 div.stButton > button:first-child:hover {
-    transform: scale(1.02) translateY(-2px);
-    box-shadow: 0 12px 25px rgba(129, 140, 248, 0.4);
+    background: var(--sage-light) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(74,124,89,0.25) !important;
 }
 
-/* Kartu Peringatan & Aman dengan Animasi Lembut */
+.breath-ring {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--sage-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    animation: breatheRing 3.5s ease-in-out infinite;
+}
+.breath-inner {
+    width: 36px; height: 36px;
+    background: var(--sage-mist);
+    border-radius: 50%;
+    animation: breatheRing 3.5s ease-in-out infinite 0.6s;
+}
+@keyframes breatheRing {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
 .alert-box {
-    border-left: 6px solid #f43f5e; 
-    background: #ffe4e6;
-    padding: 25px; border-radius: 15px; 
-    animation: pulseSoft 2s infinite alternate;
+    text-align: center;
+    padding: 8px 0 4px;
+    animation: fadeIn 0.5s ease;
 }
+.alert-box h2 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.5rem; font-weight: 700;
+    color: #b03030; margin: 0 0 5px 0;
+}
+.alert-box p {
+    color: var(--muted); font-size: 0.8rem;
+    margin: 0 auto 12px; font-weight: 300;
+    line-height: 1.6; max-width: 260px;
+}
+
 .safe-box {
-    border-left: 6px solid #10b981; 
-    background: #d1fae5;
-    padding: 25px; border-radius: 15px; 
-    transition: all 0.3s;
+    text-align: center;
+    padding: 8px 0 4px;
+    animation: fadeIn 0.5s ease;
+}
+.safe-box h2 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--sage); margin: 0 0 5px 0;
+}
+.safe-box p {
+    color: var(--muted); font-size: 0.8rem;
+    margin: 0 auto 12px; font-weight: 300;
+    line-height: 1.6; max-width: 260px;
 }
 
-@keyframes pulseSoft {
-    0% { transform: scale(1); box-shadow: 0 0 0 rgba(244, 63, 94, 0); }
-    100% { transform: scale(1.01); box-shadow: 0 10px 20px rgba(244, 63, 94, 0.15); }
+.conf-badge {
+    display: inline-block;
+    background: var(--sage-mist);
+    border: 1px solid rgba(74,124,89,0.25);
+    border-radius: 30px;
+    padding: 7px 20px;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 1.4rem;
+    color: var(--sage);
+    margin-bottom: 16px;
 }
-@keyframes slideUp { from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);} }
-@keyframes fadeInDown { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
 
-/* Progress Bar */
-.stProgress .st-bo { background-color: #e2e8f0; }
+.dist-label {
+    font-family: 'DM Mono', monospace !important;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 12px 0 8px;
+}
+
+.insight-strip {
+    background: var(--sage-mist);
+    border: 1px solid rgba(74,124,89,0.18);
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.stProgress > div > div {
+    background: var(--sage-mist) !important;
+    border-radius: 4px !important;
+    height: 7px !important;
+}
+.stProgress > div > div > div > div {
+    background: var(--sage) !important;
+    border-radius: 4px !important;
+}
+
+.stDataFrame {
+    background: #ffffff !important;
+    border: 1px solid rgba(74,124,89,0.15) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+.stDataFrame th {
+    background: var(--warm) !important;
+    color: var(--sage) !important;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 10px !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid rgba(74,124,89,0.12) !important;
+    padding: 11px 16px !important;
+}
+.stDataFrame td {
+    color: var(--soil) !important;
+    font-size: 13px !important;
+    font-weight: 300 !important;
+    border-bottom: 1px solid rgba(74,124,89,0.08) !important;
+    padding: 10px 16px !important;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--warm); }
+::-webkit-scrollbar-thumb { background: var(--sage-pale); border-radius: 10px; }
