@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700;800&display=swap');
+    
+* {font-family: 'Nunito', sans-serif;}
+
+/* 1. MENGHILANGKAN SPACE PUTIH DI ATAS */
+header[data-testid="stHeader"] { visibility: hidden; height: 0px; }
+.block-container { padding-top: 2rem !important; padding-bottom: 0 !important; max-width: 90% !important; }
+
+/* 2. BACKGROUND ANIMASI (TEMA PSIKOLOGI - CALMING PASTEL) */
+.stApp {
+    background: linear-gradient(-45deg, #e0f2fe, #f3e8ff, #ccfbf1, #e0e7ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #1e293b;
+}
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* 3. ELEMEN BERGERAK (FLOATING ORBS) */
+.orb-1, .orb-2, .orb-3 {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 12s infinite ease-in-out alternate;
+}
+.orb-1 { width: 400px; height: 400px; background: #a78bfa; top: -100px; left: -100px; opacity: 0.5;}
+.orb-2 { width: 500px; height: 500px; background: #5eead4; bottom: -150px; right: -100px; animation-delay: -5s; opacity: 0.5;}
+.orb-3 { width: 350px; height: 350px; background: #93c5fd; top: 40%; left: 40%; animation-delay: -2s; opacity: 0.4;}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    100% { transform: translate(40px, 60px) scale(1.1) rotate(20deg); }
+}
+
+/* Animasi Judul Utama */
+.title-container {
+    text-align: center;
+    padding: 10px 0 30px 0;
+    animation: fadeInDown 1.5s ease-out;
+}
+.title-main {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 5px;
+    letter-spacing: -1px;
+}
+
+/* Kartu UI (Glassmorphism Light) */
+.metric-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: slideUp 1s ease-out;
+    color: #334155;
+}
+.metric-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* 4. FIX TEXT INVISIBLE (Input Area Terang) */
+.stTextArea textarea {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #cbd5e1 !important;
+    border-radius: 15px !important;
+    font-size: 1.15rem !important;
+    padding: 20px !important;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
+}
+.stTextArea textarea:focus {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2) !important;
+    background-color: #f8fafc !important;
+}
+
+/* Tombol Proses (Gradient Cerah) */
+div.stButton > button:first-child {
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
+    color: white !important;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+}
+div.stButton > button:first-child:hover {
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 12px 25px rgba(129, 140, 248, 0.4);
+}
+
+/* Kartu Peringatan & Aman dengan Animasi Lembut */
+.alert-box {
+    border-left: 6px solid #f43f5e; 
+    background: #ffe4e6;
+    padding: 25px; border-radius: 15px; 
+    animation: pulseSoft 2s infinite alternate;
+}
+.safe-box {
+    border-left: 6px solid #10b981; 
+    background: #d1fae5;
+    padding: 25px; border-radius: 15px; 
+    transition: all 0.3s;
+}
+
+@keyframes pulseSoft {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(244, 63, 94, 0); }
+    100% { transform: scale(1.01); box-shadow: 0 10px 20px rgba(244, 63, 94, 0.15); }
+}
+@keyframes slideUp { from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);} }
+@keyframes fadeInDown { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
+
+/* Progress Bar */
+.stProgress .st-bo { background-color: #e2e8f0; }
